@@ -26,7 +26,6 @@ function validateForm(){
 
 	function email(){
 		var idCorreo = document.getElementById("input-email").value;
-		/*if (!(/^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$).test(idCorreo))*/
 		if (!(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/).test(idCorreo)){
 			var spanCorreo = document.createElement("span");
 			var spanText = document.createTextNode("Correo inválido. Ingrese nuevamente.");
@@ -39,7 +38,7 @@ function validateForm(){
 
 	function contrasena(){
 		var idContrasena = document.getElementById("input-password").value;
-		if (!(/^(?=.*\d).{6,}$/).test(idContrasena)){
+		if (idContrasena=="123456" || idContrasena=="098765" || !(/^(?=.*\d).{6,}$/).test(idContrasena)){
 			var spanContrasena = document.createElement("span");
 			var spanText = document.createTextNode("Contraseña inválida. Ingrese nuevamente.");
 			var spanFather = document.getElementsByClassName("form-group input-box")[0];
@@ -63,7 +62,5 @@ function validateForm(){
 		}
 	}
 	selection();
-
-
 
 }

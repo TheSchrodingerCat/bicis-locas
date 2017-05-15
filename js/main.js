@@ -26,7 +26,8 @@ function validateForm(){
 
 	function email(){
 		var idCorreo = document.getElementById("input-email").value;
-		if (!(/\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)/.test(idCorreo))){
+		/*if (!(/^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$).test(idCorreo))*/
+		if (!(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/).test(idCorreo)){
 			var spanCorreo = document.createElement("span");
 			var spanText = document.createTextNode("Correo inválido. Ingrese nuevamente.");
 			var spanFather = document.getElementsByClassName("email-container input-box")[0];
@@ -47,6 +48,21 @@ function validateForm(){
 		}
 	}
 	contrasena();
+
+	function selection(){
+		var eleccion = document.getElementsByTagName("select"); //enlista en un array
+		var large = eleccion.length;
+		for (i=0 ; i<large ; i++){
+			if (eleccion[i].value == 0){
+				var spanEleccion = document.createElement("span");
+				var spanText = document.createTextNode("Debe escoger una de las opciones.");
+				var spanFather = document.getElementsByClassName("form-group input-box")[1];
+				spanEleccion.appendChild(spanText);
+				spanFather.appendChild(spanEleccion);
+			}
+		}
+	}
+	selection();
 
 
 

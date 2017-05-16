@@ -1,13 +1,17 @@
 function validateForm(){
 
+	function formularioDom(dato,clase,n){
+		var spanElement = document.createElement("span");
+		var spanText = document.createTextNode("Campo inválido. Ingrese nuevamente su " + dato + ".");
+		var spanFather = document.getElementsByClassName(clase + " input-box")[n];
+		spanElement.appendChild(spanText);
+		spanFather.appendChild(spanElement);
+	}
+
 	function name(){
 		var idNombre = document.getElementById("name").value;
 		if (!(/^[A-Z][a-z]{3,19}$/).test(idNombre)){
-		var spanName = document.createElement("span");
-		var spanText = document.createTextNode("Nombre inválido. Ingrese nuevamente.");
-		var spanFather = document.getElementsByClassName("name-container input-box")[0];
-		spanName.appendChild(spanText);
-		spanFather.appendChild(spanName);
+			formularioDom("nombre","name-container",0);
 		}
 	}
 	name();
@@ -15,11 +19,7 @@ function validateForm(){
 	function lastName(){
 		var idApellido = document.getElementById("lastname").value;
 		if (!(/^[A-Z][a-z]{3,19}$/).test(idApellido)){
-			var spanLastName = document.createElement("span");
-			var spanText = document.createTextNode("Apellido inválido. Ingrese nuevamente.");
-			var spanFather = document.getElementsByClassName("lastname-container input-box")[0];
-			spanLastName.appendChild(spanText);
-			spanFather.appendChild(spanLastName);
+			formularioDom("apellido","lastname-container",0);
 		}
 	}
 	lastName();
@@ -27,23 +27,15 @@ function validateForm(){
 	function email(){
 		var idCorreo = document.getElementById("input-email").value;
 		if (!(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/).test(idCorreo)){
-			var spanCorreo = document.createElement("span");
-			var spanText = document.createTextNode("Correo inválido. Ingrese nuevamente.");
-			var spanFather = document.getElementsByClassName("email-container input-box")[0];
-			spanCorreo.appendChild(spanText);
-			spanFather.appendChild(spanCorreo);
+			formularioDom("correo","email-container",0);
 		}
 	}
 	email();
 
 	function contrasena(){
 		var idContrasena = document.getElementById("input-password").value;
-		if (idContrasena=="123456" || idContrasena=="098765" || !(/^(?=.*\d).{6,}$/).test(idContrasena)){
-			var spanContrasena = document.createElement("span");
-			var spanText = document.createTextNode("Contraseña inválida. Ingrese nuevamente.");
-			var spanFather = document.getElementsByClassName("form-group input-box")[0];
-			spanContrasena.appendChild(spanText);
-			spanFather.appendChild(spanContrasena);
+		if (idContrasena=="123456" || idContrasena=="098765" || idContrasena.toLowerCase()=="password" || idContrasena.length<6){
+			formularioDom("contraseña","form-group",0);
 		}
 	}
 	contrasena();
@@ -53,14 +45,9 @@ function validateForm(){
 		var large = eleccion.length;
 		for (i=0 ; i<large ; i++){
 			if (eleccion[i].value == 0){
-				var spanEleccion = document.createElement("span");
-				var spanText = document.createTextNode("Debe escoger una de las opciones.");
-				var spanFather = document.getElementsByClassName("form-group input-box")[1];
-				spanEleccion.appendChild(spanText);
-				spanFather.appendChild(spanEleccion);
+				formularioDom("opción","form-group",1);
 			}
 		}
 	}
 	selection();
-
 }
